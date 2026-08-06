@@ -21,6 +21,8 @@
     --muted: #6b7280;
     --accent: #2b2f38;
     --danger: #ff5f6d;
+    --badge-text: #ffffff;   /* guide-no 원형 배지 글씨 - accent 배경 위에 놓인다 */
+    --error-text: #b91c1c;   /* 저장소 오류 안내 글씨 */
     /* 버튼 색 테마: 밝은 회색 + 검은 글씨.
        선택/활성 상태는 좀 더 진한 회색으로 구분한다. */
     --btn-bg: #eef0f2;
@@ -30,6 +32,25 @@
     --btn-border-active: #9aa0a8;
     --btn-text-active: #101216;
   }
+  /* 다크모드: 같은 변수 이름에 값만 바꿔치기한다.
+     그래서 이 블록 밑의 CSS는 단 한 줄도 안 고쳐도 되고,
+     var(--xxx)로 값을 참조하던 곳들이 전부 자동으로 다크 톤으로 바뀐다. */
+  [data-theme="dark"]{
+    --bg: #12141a;
+    --panel: #1c1f27;
+    --panel-2: #262a34;
+    --ink: #e8eaf0;
+    --muted: #9aa1ac;
+    --accent: #d7dae0;
+    --badge-text: #12141a;
+    --error-text: #ff8a80;
+    --btn-bg: #262a34;
+    --btn-border: #3a3f4a;
+    --btn-text: #e8eaf0;
+    --btn-bg-active: #4a5160;
+    --btn-border-active: #6b7280;
+    --btn-text-active: #f5f6f8;
+  }
   *{ box-sizing: border-box; }
   body{
     margin:0;
@@ -37,7 +58,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background: #ffffff;
+    background: var(--bg);
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--ink);
     padding: 18px 10px;
@@ -54,7 +75,7 @@
     margin:0;
     letter-spacing: 1px;
     font-weight: 800;
-    background: linear-gradient(120deg, #16181d, #6b7280);
+    background: linear-gradient(120deg, var(--ink), var(--muted));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -67,6 +88,18 @@
     margin-bottom: 12px;
   }
   .lang-switch{ display:flex; gap:4px; }
+  .right-controls{ display:flex; gap:6px; align-items:center; }
+  .theme-btn{
+    flex: none;
+    background: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    color: var(--btn-text);
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
   .lang-btn{
     background: var(--btn-bg);
     border: 1px solid var(--btn-border);
@@ -318,7 +351,7 @@
     cursor:pointer;
   }
   .btn-ghost{
-    background: #f5f6f8;
+    background: var(--btn-bg);
     border:1px solid var(--btn-border);
     color: var(--btn-text);
     padding: 11px 18px;
@@ -334,7 +367,7 @@
     padding: 11px 12px;
     border-radius: 10px;
     border: 1px solid var(--btn-border);
-    background: #ffffff;
+    background: var(--btn-bg);
     color: var(--ink);
     font-size: 15px;
     text-align:center;
@@ -377,7 +410,7 @@
     width: 26px; height: 26px;
     border-radius: 50%;
     background: var(--accent);
-    color: #ffffff;
+    color: var(--badge-text);
     font-weight: 900;
     font-size: 13px;
     display:flex; align-items:center; justify-content:center;
@@ -392,18 +425,18 @@
     margin: 10px 0 0;
     font-size: 13px;
     line-height: 1.7;
-    color: #2a2d33;
+    color: var(--ink);
   }
   .guide-text b{ color: var(--accent); }
 
   .guide-goal{
     background: var(--panel-2);
-    border: 1px solid #d5d8dc;
+    border: 1px solid var(--btn-border);
     border-radius: 12px;
     padding: 14px;
     font-size: 13px;
     line-height: 1.7;
-    color: #2a2d33;
+    color: var(--ink);
   }
   .guide-goal-title{ font-weight: 800; color: var(--accent); margin-bottom: 6px; }
   .guide-goal b{ color: var(--accent); }
@@ -417,13 +450,13 @@
   .guide-wall{
     margin-top: 12px;
     background: var(--panel-2);
-    border: 1px solid #d5d8dc;
+    border: 1px solid var(--btn-border);
     border-radius: 12px;
     padding: 14px;
   }
   .guide-wall-title{ font-weight: 800; color: var(--accent); margin-bottom: 8px; }
   .guide-wall .guide-img{ margin-bottom: 10px; }
-  .guide-wall .guide-text{ margin: 0; color: #2a2d33; }
+  .guide-wall .guide-text{ margin: 0; color: var(--ink); }
   .guide-wall .guide-text b{ color: var(--accent); }
 
   /* 실제 게임 속 벽 타일(.cell.up)과 완전히 같은 모양을 쓰기 위해
@@ -442,12 +475,12 @@
   .guide-treasure{
     margin-top: 12px;
     background: var(--panel-2);
-    border: 1px solid #d5d8dc;
+    border: 1px solid var(--btn-border);
     border-radius: 12px;
     padding: 14px;
   }
   .guide-treasure-title{ font-weight: 800; color: var(--accent); margin-bottom: 8px; }
-  .guide-treasure .guide-text{ margin: 0 0 8px; color: #2a2d33; }
+  .guide-treasure .guide-text{ margin: 0 0 8px; color: var(--ink); }
   .guide-treasure .guide-text:last-child{ margin-bottom: 0; }
   .guide-treasure .guide-text b{ color: var(--accent); }
 
@@ -495,7 +528,7 @@
     margin-top: 10px;
     font-size: 11px;
     line-height: 1.6;
-    color: #b91c1c;
+    color: var(--error-text);
     background: rgba(255,95,109,.12);
     border-radius: 8px;
     padding: 8px 10px;
@@ -517,7 +550,10 @@
       <button class="lang-btn" data-lang="zh">中</button>
       <button class="lang-btn" data-lang="ko">한</button>
     </div>
-    <button class="guide-top-btn" id="guideOpenBtn" data-i18n="guideBtn">📖 How to Play</button>
+    <div class="right-controls">
+      <button class="theme-btn" id="themeToggleBtn" title="Toggle dark mode">🌙</button>
+      <button class="guide-top-btn" id="guideOpenBtn" data-i18n="guideBtn">📖 How to Play</button>
+    </div>
   </div>
 
   <div class="diff-row">
@@ -1759,6 +1795,31 @@ function restoreVisualState(){
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+});
+
+/* ------------------------------------------------------------
+   다크모드
+   ------------------------------------------------------------
+   [원리] :root에 라이트 값, [data-theme="dark"]에 다크 값을
+   똑같은 변수 이름으로 정의해뒀다. <html>에 data-theme="dark"를
+   붙이거나 떼기만 하면, var(--xxx)로 색을 참조하던 모든 요소가
+   자동으로 갱신된다. 요소 하나하나의 색을 직접 바꾸는 코드는
+   필요 없다.
+   [기본값] 로그인 없이 쓰는 게임이라 서버에 설정을 저장하진
+   않는다. 대신 접속한 기기의 "시스템 다크모드 설정"을 그대로
+   따르고, 버튼으로는 이번 접속 동안만 바꿀 수 있게 했다. */
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+function setTheme(isDark){
+  document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+  themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+}
+
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+setTheme(prefersDark);
+
+themeToggleBtn.addEventListener('click', () => {
+  setTheme(document.documentElement.dataset.theme !== 'dark');
 });
 
 applyLanguage('en');   // 기본 언어는 영어. 난이도 버튼 라벨 등 정적 텍스트를 먼저 채워둔다
