@@ -4,6 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Triangle Minesweeper</title>
+
+<!-- 파비콘: 실제 게임 타일과 같은 삼각형 모양 로고를 여러 크기로 준비했다.
+     png 파일들은 index.html과 같은 폴더에 함께 올려야 한다. -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- 검색엔진용 기본 설명 -->
+<meta name="description" content="A minesweeper variant played on a triangular grid — 12 neighbors instead of 8, plus Wall Mode and Treasure Hunt Mode. Race the clock and climb the global leaderboard.">
+
+<!-- Open Graph: 카카오톡/디스코드/페이스북 등에 링크를 공유했을 때 뜨는 미리보기 카드.
+     og:image는 실제 파일 URL이어야 해서, index.html이 올라간 주소를 그대로 썼다.
+     저장소 이름이나 배포 주소가 바뀌면 이 부분도 같이 고쳐야 한다. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Triangle Minesweeper">
+<meta property="og:description" content="A minesweeper variant played on a triangular grid — 12 neighbors instead of 8, plus Wall Mode and Treasure Hunt Mode.">
+<meta property="og:image" content="https://synovelix.github.io/tri-minesweeper/og-image.png">
+<meta property="og:url" content="https://synovelix.github.io/tri-minesweeper/">
+
+<!-- 트위터(X)는 Open Graph를 일부만 따르므로 전용 태그를 별도로 둔다 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Triangle Minesweeper">
+<meta name="twitter:description" content="A minesweeper variant played on a triangular grid — 12 neighbors instead of 8, plus Wall Mode and Treasure Hunt Mode.">
+<meta name="twitter:image" content="https://synovelix.github.io/tri-minesweeper/og-image.png">
 <!-- Firebase SDK: 빌드 도구 없이 <script> 태그만으로 쓸 수 있는 compat 버전을 사용한다.
      cdnjs.cloudflare.com에서 불러온다 (클로드 미리보기 환경에서도 허용되는 CDN이라
      미리보기 안에서 바로 테스트할 수 있다. 원래 쓰던 gstatic.com은 미리보기에서 막혀있었다).
